@@ -1,12 +1,538 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>site do 46</title>
+    <title>1 Ano Juntos ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.7);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10%, 90% { opacity: 1; }
+            50% { transform: translateY(-100px) rotate(180deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #d63384;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .countdown {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            font-size: 1.2em;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .section h2 {
+            color: #d63384;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, #ff9a9e, #d63384);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            opacity: 0;
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        @keyframes slideIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.7s; }
+
+        .timeline-item.left {
+            left: 0;
+            transform: translateX(-50px);
+        }
+
+        .timeline-item.right {
+            left: 50%;
+            transform: translateX(50px);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background: #d63384;
+            border: 4px solid #fff;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 3px #d63384;
+        }
+
+        .timeline-item.right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .photo-placeholder {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .love-message {
+            text-align: center;
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #555;
+            font-style: italic;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 154, 158, 0.1), rgba(254, 207, 239, 0.1));
+            border-radius: 15px;
+            border-left: 5px solid #d63384;
+        }
+
+        .interactive-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+        }
+
+        .interactive-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .memory-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #ff6b6b;
+            transition: transform 0.3s ease;
+        }
+
+        .memory-card:hover {
+            transform: translateX(10px);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item.right {
+                left: 0%;
+            }
+            
+            .timeline-item.left::after, 
+            .timeline-item.right::after {
+                left: 21px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <p>testando site</p>
-    <p>Dantas</p>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container">
+        <header>
+            <h1>1 Ano Juntos! ❤️</h1>
+            <p class="subtitle">Celebrando nosso amor e todos os momentos especiais</p>
+            <div class="countdown" id="countdown">
+                Hoje completamos exatamente 1 ano juntos!
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>Nossa História 📖</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Primeiro Encontro 💕</h3>
+                        <p>O dia em que nos conhecemos e tudo começou. Quem diria que aquele momento mudaria nossas vidas para sempre?</p>
+                        <small>Adicione a data especial aqui</small>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Primeiro Beijo 💋</h3>
+                        <p>O momento mágico que selou nosso destino. Ainda lembro de cada detalhe daquele instante perfeito.</p>
+                        <small>Adicione a data especial aqui</small>
+                    </div>
+                </div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Pedido de Namoro 💍</h3>
+                        <p>O "sim" mais importante das nossas vidas. O início oficial desta jornada incrível juntos.</p>
+                        <small>Há exatamente 1 ano</small>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Hoje - 1 Ano! 🎉</h3>
+                        <p>Celebrando 365 dias de amor, companheirismo, risadas e momentos inesquecíveis ao seu lado.</p>
+                        <small>28 de Julho de 2025</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Nossas Estatísticas do Amor 📊</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">365</div>
+                    <div>Dias Juntos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div>Momentos Especiais</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2</div>
+                    <div>Corações Unidos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1</div>
+                    <div>Amor Verdadeiro</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Galeria de Momentos 📸</h2>
+            <div class="photo-gallery">
+                <div class="photo-placeholder">
+                    <div>
+                        📷<br>
+                        Adicione aqui<br>
+                        nossa primeira foto
+                    </div>
+                </div>
+                <div class="photo-placeholder">
+                    <div>
+                        📷<br>
+                        Nossa foto<br>
+                        mais engraçada
+                    </div>
+                </div>
+                <div class="photo-placeholder">
+                    <div>
+                        📷<br>
+                        Momento<br>
+                        mais romântico
+                    </div>
+                </div>
+                <div class="photo-placeholder">
+                    <div>
+                        📷<br>
+                        Viagem ou<br>
+                        passeio especial
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Memórias Especiais 💭</h2>
+            
+            <div class="memory-card">
+                <h3>🌟 Nossa primeira música</h3>
+                <p>Aquela música que tocou no nosso primeiro encontro e que até hoje nos faz lembrar daquele momento mágico.</p>
+            </div>
+            
+            <div class="memory-card">
+                <h3>🎬 Nosso filme</h3>
+                <p>O filme que assistimos juntinhos e que virou tradição. Toda vez que passa na TV, pensamos um no outro.</p>
+            </div>
+            
+            <div class="memory-card">
+                <h3>🍕 Nossa comida favorita</h3>
+                <p>Aquele prato especial que sempre dividimos e que tem o sabor dos nossos melhores momentos juntos.</p>
+            </div>
+            
+            <div class="memory-card">
+                <h3>📍 Nosso lugar especial</h3>
+                <p>O cantinho que é só nosso, onde criamos as memórias mais preciosas e onde sempre voltamos quando queremos nos conectar.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Carta de Amor 💌</h2>
+            <div class="love-message">
+                "Um ano se passou como um sopro, mas ao mesmo tempo parece que te conheço há uma vida inteira. 
+                Em 365 dias, você se tornou minha pessoa favorita, meu lar, minha paz e minha alegria. 
+                Obrigado(a) por cada risada compartilhada, cada abraço apertado, cada 'bom dia' e 'boa noite'.
+                Obrigado(a) por me amar nos meus dias bons e ruins, por acreditar em nós e por construir 
+                comigo essa história linda que é só nossa. Que venham muitos e muitos anos pela frente, 
+                porque com você ao meu lado, eu tenho certeza de que o melhor ainda está por vir. 
+                Te amo hoje, amanhã e sempre! ❤️"
+                
+                <br><br>
+                <em>- Com todo meu amor</em>
+            </div>
+        </section>
+
+        <section class="section" style="text-align: center;">
+            <h2>Interaja com Nosso Amor 💝</h2>
+            <button class="interactive-btn" onclick="showSurprise()">Surpresa Especial! 🎁</button>
+            <button class="interactive-btn" onclick="playLoveSound()">Toque Nosso Som ❤️</button>
+            <button class="interactive-btn" onclick="showMessage()">Mensagem Secreta 💕</button>
+            
+            <div id="surprise" style="margin-top: 30px; padding: 20px; background: rgba(255, 182, 193, 0.2); border-radius: 15px; display: none;">
+                <h3>🎉 Surpresa!</h3>
+                <p>Você é a melhor coisa que aconteceu na minha vida! Cada dia ao seu lado é um presente. Te amo infinitamente! 💕</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Criar corações flutuantes
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 3 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            
+            document.getElementById('floatingHearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Criar corações a cada 2 segundos
+        setInterval(createFloatingHeart, 2000);
+
+        // Funções interativas
+        function showSurprise() {
+            const surprise = document.getElementById('surprise');
+            surprise.style.display = surprise.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function playLoveSound() {
+            alert('🎵 Tocando nossa música especial no coração! 🎵');
+        }
+
+        function showMessage() {
+            alert('💕 MENSAGEM SECRETA: Você é perfeito(a) do jeito que é e eu te amo mais a cada dia! 💕');
+        }
+
+        // Adicionar mais corações quando clicar na tela
+        document.addEventListener('click', function(e) {
+            for(let i = 0; i < 3; i++) {
+                setTimeout(() => createFloatingHeart(), i * 100);
+            }
+        });
+
+        // Contador de tempo juntos (atualiza em tempo real)
+        function updateCountdown() {
+            const now = new Date();
+            const anniversary = new Date('2024-08-17'); // Ajuste para a data real do namoro
+            const timeDiff = now - anniversary;
+            
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            
+            if (days >= 365) {
+                document.getElementById('countdown').innerHTML = 
+                    `🎉 Mais de 1 ano juntos! 🎉<br>
+                     Exatamente ${days} dias, ${hours} horas e ${minutes} minutos de amor!`;
+            }
+        }
+
+        // Atualizar contador a cada minuto
+        setInterval(updateCountdown, 60000);
+        updateCountdown();
+    </script>
 </body>
 </html>
