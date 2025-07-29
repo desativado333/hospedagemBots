@@ -212,6 +212,7 @@
         <source src="https://drive.google.com/uc?export=download&id=1y83-MUn7ZXpkp47vxwQ6N1dGc4m4Cte1" type="audio/mp3">
         Seu navegador não suporta o elemento de áudio.
     </audio>
+    <button onclick="document.querySelector('audio').play()">Tocar Música</button>
     <header>
         <h1>Nosso Primeiro Ano Juntos <span class="heart">♥</span></h1>
         <p>Uma celebração do nosso amor, que cresceu e floresceu ao longo de 365 dias incríveis.</p>
@@ -288,6 +289,13 @@
         function showMessage() {
             alert("Meu amor, este último ano com você foi o melhor da minha vida. Cada risada, cada abraço, cada momento juntos fez meu coração transbordar. Que venham muitos mais anos de nós dois! Te amo! ♥");
         }
+
+        // Ouvinte de erro para o elemento <audio>
+        const audio = document.querySelector('audio');
+        audio.addEventListener('error', (e) => {
+            console.error('Erro ao carregar o áudio:', e);
+            alert('Não foi possível carregar a música. Verifique o console para mais detalhes.');
+        });
     </script>
 </body>
 </html>
