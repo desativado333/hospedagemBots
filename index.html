@@ -34,6 +34,18 @@
         #main-content {
             display: none;
         }
+        #welcome-message {
+            text-align: center;
+            padding: 20px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2em;
+            color: #e91e63;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.5s;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
         header {
             text-align: center;
             padding: 50px 20px;
@@ -73,6 +85,8 @@
             font-family: 'Great Vibes', cursive;
         }
         .timeline-item {
+            display: flex;
+            align-items: center;
             background: rgba(255, 255, 255, 0.9);
             margin: 20px 0;
             padding: 20px;
@@ -89,6 +103,14 @@
         .timeline-item:nth-child(even) {
             transform: translateX(50px);
             animation: slideLeft 0.5s ease forwards;
+        }
+        .timeline-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         @keyframes slideUp {
             to { opacity: 1; transform: translateY(0); }
@@ -113,9 +135,54 @@
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
+            cursor: pointer;
         }
         .gallery img:hover {
             transform: scale(1.1);
+        }
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        #modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 80%;
+            max-height: 80%;
+        }
+        #modal-img {
+            max-width: 100%;
+            max-height: 50vh;
+            border-radius: 10px;
+        }
+        #modal-caption {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #e91e63;
+            font-family: 'Great Vibes', cursive;
+        }
+        #modal-close {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #modal-close:hover {
+            background: #d81b60;
         }
         .counter {
             text-align: center;
@@ -216,12 +283,6 @@
         button:hover {
             background: #d81b60;
         }
-        audio {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            opacity: 0.7;
-        }
     </style>
 </head>
 <body>
@@ -229,15 +290,13 @@
         <div id="countdown">12</div>
     </div>
     <div id="main-content">
+        <section id="welcome-message">
+            <span id="typed-message"></span>
+        </section>
         <div class="hearts">
             <span></span>
             <span></span>
         </div>
-        <audio autoplay loop controls>
-            <source src="https://drive.google.com/uc?export=download&id=1y83-MUn7ZXpkp47vxwQ6N1dGc4m4Cte1" type="audio/mp3">
-            Seu navegador não suporta o elemento de áudio.
-        </audio>
-        <button onclick="document.querySelector('audio').play()">Tocar Música</button>
         <header>
             <h1>Nosso Primeiro Ano Juntos <span class="heart">♥</span></h1>
             <p>Uma celebração do nosso amor, que cresceu e floresceu ao longo de 365 dias incríveis.</p>
@@ -251,20 +310,32 @@
         <section class="timeline">
             <h2>Nossa Jornada</h2>
             <div class="timeline-item">
-                <h3>O Dia em que Nos Conhecemos</h3>
-                <p>Nosso primeiro encontro foi mágico, como se o destino tivesse planejado tudo. Lembra do nervosismo e dos sorrisos tímidos?</p>
+                <img src="https://cdn.discordapp.com/attachments/1071571273408331807/1399891921706680403/image.jpg?ex=688aa672&is=688954f2&hm=ac6fc7cbfa5933aa124bf6fe938f79e4ac03ef092501e907913fffd406cca586&" alt="Primeiro Encontro">
+                <div>
+                    <h3>O Dia em que Nos Conhecemos</h3>
+                    <p>Nosso primeiro encontro foi mágico, como se o destino tivesse planejado tudo. Lembra do nervosismo e dos sorrisos tímidos?</p>
+                </div>
             </div>
             <div class="timeline-item">
-                <h3>Nosso Primeiro Beijo</h3>
-                <p>Aquele momento em que o mundo parou, e só existíamos nós dois. Foi o começo de tudo.</p>
+                <img src="https://cdn.discordapp.com/attachments/1071571273408331807/1399892281506533518/image.jpg?ex=688aa6c8&is=68895548&hm=774b4c61f3d35b27fc546e777901b177a9502886e37079ee850957e8b01f3f87&" alt="Primeiro Beijo">
+                <div>
+                    <h3>Nosso Primeiro Beijo</h3>
+                    <p>Aquele momento em que o mundo parou, e só existíamos nós dois. Foi o começo de tudo.</p>
+                </div>
             </div>
             <div class="timeline-item">
-                <h3>Nossa primeira vez durmindo juntos</h3>
-                <p>Aventura, risadas e memórias que guardaremos para sempre. o tempo passa rapido nao e mesmo minha princesa</p>
+                <img src="https://cdn.discordapp.com/attachments/1071571273408331807/1399893721494847609/image.jpg?ex=688aa81f&is=6889569f&hm=e4d5fc298bdb117ffa3a95d808b3cc3cc06c0f0e151fb370417bbae894a0c633&" alt="Primeira Noite">
+                <div>
+                    <h3>Nossa primeira vez dormindo juntos</h3>
+                    <p>Aventura, risadas e memórias que guardaremos para sempre. O tempo passa rápido, não é mesmo, minha princesa?</p>
+                </div>
             </div>
             <div class="timeline-item">
-                <h3>Hoje, 1 Ano Depois</h3>
-                <p>Olhando para trás, cada momento nos trouxe até aqui. E o melhor? Ainda temos uma vida inteira para viver juntos.</p>
+                <img src="https://cdn.discordapp.com/attachments/1071571273408331807/1399892592564637727/image.jpg?ex=688aa712&is=68895592&hm=5f6a90cec049b29deb4df55110efc25aafe8658e57668068953ee22212e7df64&" alt="1 Ano">
+                <div>
+                    <h3>Hoje, 1 Ano Depois</h3>
+                    <p>Olhando para trás, cada momento nos trouxe até aqui. E o melhor? Ainda temos uma vida inteira para viver juntos.</p>
+                </div>
             </div>
         </section>
 
@@ -276,11 +347,19 @@
 
         <section class="gallery">
             <h2>Nossas Memórias</h2>
-            <img src="https://via.placeholder.com/200?text=Nossa+Foto+1" alt="Foto 1">
-            <img src="https://via.placeholder.com/200?text=Nossa+Foto+2" alt="Foto 2">
-            <img src="https://via.placeholder.com/200?text=Nossa+Foto+3" alt="Foto 3">
-            <img src="https://via.placeholder.com/200?text=Nossa+Foto+4" alt="Foto 4">
+            <img src="https://via.placeholder.com/200?text=Nossa+Foto+1" alt="Foto 1" onclick="openModal('https://via.placeholder.com/200?text=Nossa+Foto+1', 'Nossa primeira selfie juntos, cheia de sorrisos!')">
+            <img src="https://via.placeholder.com/200?text=Nossa+Foto+2" alt="Foto 2" onclick="openModal('https://via.placeholder.com/200?text=Nossa+Foto+2', 'Um dia inesquecível no parque.')">
+            <img src="https://via.placeholder.com/200?text=Nossa+Foto+3" alt="Foto 3" onclick="openModal('https://via.placeholder.com/200?text=Nossa+Foto+3', 'Capturando nosso amor ao pôr do sol.')">
+            <img src="https://via.placeholder.com/200?text=Nossa+Foto+4" alt="Foto 4" onclick="openModal('https://via.placeholder.com/200?text=Nossa+Foto+4', 'Momentos simples que significam tudo.')">
         </section>
+
+        <div id="modal">
+            <div id="modal-content">
+                <img id="modal-img" src="" alt="Imagem Ampliada">
+                <p id="modal-caption"></p>
+                <button id="modal-close" onclick="closeModal()">Fechar</button>
+            </div>
+        </div>
 
         <section class="video">
             <h2>Nosso Momento Especial</h2>
@@ -308,8 +387,43 @@
                 clearInterval(countdownInterval);
                 countdownOverlay.style.display = 'none';
                 mainContent.style.display = 'block';
+                typeMessage();
             }
         }, 1000);
+
+        // Typewriter effect for welcome message
+        const messages = [
+            "Você é o motivo do meu sorriso todos os dias.",
+            "Te amo mais a cada novo amanhecer.",
+            "Nossa história é meu conto de fadas favorito."
+        ];
+        function typeMessage() {
+            const message = messages[Math.floor(Math.random() * messages.length)];
+            let i = 0;
+            const typedMessage = document.getElementById('typed-message');
+            document.getElementById('welcome-message').style.display = 'block';
+            function type() {
+                if (i < message.length) {
+                    typedMessage.textContent += message.charAt(i);
+                    i++;
+                    setTimeout(type, 100);
+                }
+            }
+            type();
+        }
+
+        // Modal for gallery
+        function openModal(src, caption) {
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalCaption = document.getElementById('modal-caption');
+            modal.style.display = 'flex';
+            modalImg.src = src;
+            modalCaption.textContent = caption;
+        }
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
 
         // Contador de Dias Juntos
         const startDate = new Date('2024-08-17'); // Substitua pela data do início do namoro
@@ -331,13 +445,6 @@
         function showMessage() {
             alert("Meu amor, este último ano com você foi o melhor da minha vida. Cada risada, cada abraço, cada momento juntos fez meu coração transbordar. Que venham muitos mais anos de nós dois! Te amo! ♥");
         }
-
-        // Ouvinte de erro para o elemento <audio>
-        const audio = document.querySelector('audio');
-        audio.addEventListener('error', (e) => {
-            console.error('Erro ao carregar o áudio:', e);
-            alert('Não foi possível carregar a música. Verifique o console para mais detalhes.');
-        });
     </script>
 </body>
 </html>
