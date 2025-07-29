@@ -13,6 +13,27 @@
             color: #333;
             overflow-x: hidden;
         }
+        #countdown-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffe6f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        #countdown {
+            font-size: 3em;
+            color: #e91e63;
+            font-family: 'Great Vibes', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        #main-content {
+            display: none;
+        }
         header {
             text-align: center;
             padding: 50px 20px;
@@ -204,71 +225,92 @@
     </style>
 </head>
 <body>
-    <div class="hearts">
-        <span></span>
-        <span></span>
+    <div id="countdown-overlay">
+        <div id="countdown">12</div>
     </div>
-    <audio autoplay loop controls>
-        <source src="https://drive.google.com/uc?export=download&id=1y83-MUn7ZXpkp47vxwQ6N1dGc4m4Cte1" type="audio/mp3">
-        Seu navegador não suporta o elemento de áudio.
-    </audio>
-    <button onclick="document.querySelector('audio').play()">Tocar Música</button>
-    <header>
-        <h1>Nosso Primeiro Ano Juntos <span class="heart">♥</span></h1>
-        <p>Uma celebração do nosso amor, que cresceu e floresceu ao longo de 365 dias incríveis.</p>
-    </header>
-
-    <section class="counter">
-        <h2>Nossos Dias Juntos</h2>
-        <p id="days-together"></p>
-    </section>
-
-    <section class="timeline">
-        <h2>Nossa Jornada</h2>
-        <div class="timeline-item">
-            <h3>O Dia em que Nos Conhecemos</h3>
-            <p>Nosso primeiro encontro foi mágico, como se o destino tivesse planejado tudo. Lembra do nervosismo e dos sorrisos tímidos?</p>
+    <div id="main-content">
+        <div class="hearts">
+            <span></span>
+            <span></span>
         </div>
-        <div class="timeline-item">
-            <h3>Nosso Primeiro Beijo</h3>
-            <p>Aquele momento em que o mundo parou, e só existíamos nós dois. Foi o começo de tudo.</p>
-        </div>
-        <div class="timeline-item">
-            <h3>Nossa primeira vez durmindo juntos</h3>
-            <p>Aventura, risadas e memórias que guardaremos para sempre. o tempo passa rapido nao e mesmo minha princesa</p>
-        </div>
-        <div class="timeline-item">
-            <h3>Hoje, 1 Ano Depois</h3>
-            <p>Olhando para trás, cada momento nos trouxe até aqui. E o melhor? Ainda temos uma vida inteira para viver juntos.</p>
-        </div>
-    </section>
+        <audio autoplay loop controls>
+            <source src="https://drive.google.com/uc?export=download&id=1y83-MUn7ZXpkp47vxwQ6N1dGc4m4Cte1" type="audio/mp3">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+        <button onclick="document.querySelector('audio').play()">Tocar Música</button>
+        <header>
+            <h1>Nosso Primeiro Ano Juntos <span class="heart">♥</span></h1>
+            <p>Uma celebração do nosso amor, que cresceu e floresceu ao longo de 365 dias incríveis.</p>
+        </header>
 
-    <section class="letters">
-        <h2>Palavras do Coração</h2>
-        <div class="letter-card" onclick="showLetter(1)">Carta 1</div>
-        <div class="letter-card" onclick="showLetter(2)">Carta 2</div>
-    </section>
+        <section class="counter">
+            <h2>Nossos Dias Juntos</h2>
+            <p id="days-together"></p>
+        </section>
 
-    <section class="gallery">
-        <h2>Nossas Memórias</h2>
-        <img src="https://via.placeholder.com/200?text=Nossa+Foto+1" alt="Foto 1">
-        <img src="https://via.placeholder.com/200?text=Nossa+Foto+2" alt="Foto 2">
-        <img src="https://via.placeholder.com/200?text=Nossa+Foto+3" alt="Foto 3">
-        <img src="https://via.placeholder.com/200?text=Nossa+Foto+4" alt="Foto 4">
-    </section>
+        <section class="timeline">
+            <h2>Nossa Jornada</h2>
+            <div class="timeline-item">
+                <h3>O Dia em que Nos Conhecemos</h3>
+                <p>Nosso primeiro encontro foi mágico, como se o destino tivesse planejado tudo. Lembra do nervosismo e dos sorrisos tímidos?</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Nosso Primeiro Beijo</h3>
+                <p>Aquele momento em que o mundo parou, e só existíamos nós dois. Foi o começo de tudo.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Nossa primeira vez durmindo juntos</h3>
+                <p>Aventura, risadas e memórias que guardaremos para sempre. o tempo passa rapido nao e mesmo minha princesa</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Hoje, 1 Ano Depois</h3>
+                <p>Olhando para trás, cada momento nos trouxe até aqui. E o melhor? Ainda temos uma vida inteira para viver juntos.</p>
+            </div>
+        </section>
 
-    <section class="video">
-        <h2>Nosso Momento Especial</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-    </section>
+        <section class="letters">
+            <h2>Palavras do Coração</h2>
+            <div class="letter-card" onclick="showLetter(1)">Carta 1</div>
+            <div class="letter-card" onclick="showLetter(2)">Carta 2</div>
+        </section>
 
-    <button onclick="showMessage()">Uma Mensagem Especial</button>
+        <section class="gallery">
+            <h2>Nossas Memórias</h2>
+            <img src="https://via.placeholder.com/200?text=Nossa+Foto+1" alt="Foto 1">
+            <img src="https://via.placeholder.com/200?text=Nossa+Foto+2" alt="Foto 2">
+            <img src="https://via.placeholder.com/200?text=Nossa+Foto+3" alt="Foto 3">
+            <img src="https://via.placeholder.com/200?text=Nossa+Foto+4" alt="Foto 4">
+        </section>
 
-    <footer>
-        <p>Feito com amor para celebrar nosso primeiro ano. Te amo hoje e sempre! ♥</p>
-    </footer>
+        <section class="video">
+            <h2>Nosso Momento Especial</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        </section>
+
+        <button onclick="showMessage()">Uma Mensagem Especial</button>
+
+        <footer>
+            <p>Feito com amor para celebrar nosso primeiro ano. Te amo hoje e sempre! ♥</p>
+        </footer>
+    </div>
 
     <script>
+        // Countdown logic
+        let countdown = 12;
+        const countdownElement = document.getElementById('countdown');
+        const countdownOverlay = document.getElementById('countdown-overlay');
+        const mainContent = document.getElementById('main-content');
+
+        const countdownInterval = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+                countdownOverlay.style.display = 'none';
+                mainContent.style.display = 'block';
+            }
+        }, 1000);
+
         // Contador de Dias Juntos
         const startDate = new Date('2024-08-17'); // Substitua pela data do início do namoro
         const now = new Date();
