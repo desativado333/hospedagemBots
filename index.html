@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nosso Primeiro Ano Juntos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great_Vibes&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -202,7 +202,7 @@
         }
         .letter-card {
             display: inline-block;
-            background: #fff0f5; /* Changed background color to a soft pink */
+            background: #fff0f5;
             padding: 15px;
             margin: 10px;
             border-radius: 8px;
@@ -211,7 +211,7 @@
         }
         .letter-card:hover {
             transform: scale(1.05);
-            background: #ffccd5; /* Changed hover background color to a slightly darker pink */
+            background: #ffccd5;
         }
         .video {
             text-align: center;
@@ -363,7 +363,7 @@
 
         <section class="video">
             <h2>Nosso Momento Especial</h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+            <iframe id="youtube-video" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
         </section>
 
         <button onclick="showMessage()">Uma Mensagem Especial</button>
@@ -388,6 +388,9 @@
                 countdownOverlay.style.display = 'none';
                 mainContent.style.display = 'block';
                 typeMessage();
+                // Iniciar o vídeo automaticamente após o countdown
+                const videoIframe = document.getElementById('youtube-video');
+                videoIframe.src = "https://www.youtube.com/watch?v=lV2plyhSRBU";
             }
         }, 1000);
 
